@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Paintings exam</title>
+</head>
+<body>
+    <header>
+        <h1>Add Painting</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+        {{user.fullName()}}
+    </header>
+    <div class="flash">
+        {% with messages = flashed_messages() %}
+            {% if messages %}
+                {% for x in messages %}
+                    <h4>{{x}}</h4>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h2>Title: {{painting.title}}</h2>
+        <h2>Painted by: 
+            {% for user in users %}
+                {% if user.id == painting.user.id%}
+                    {{user.firstName}}
+                {% endif %}
+            {% endfor %}
+        </h2>
+        <h2>Description:</h2>
+        <textarea disabled cols="25" rows="10">{{painting.description}}</textarea>
+        <h2>Price: {{painting.price}}</h2>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

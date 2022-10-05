@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Paintings exam</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome {{user.fullName()}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="flash">
+        {% with messages = flashed_messages() %}
+            {% if messages %}
+                {% for x in messages %}
+                    <h4>{{x}}</h4>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <div class="column">
+            <h2>Paintings added</h2>
+            {% for painting in paintings %}
+                <div class="row">
+                    <h3>{{painting.title}}</h3>
+                    <h3>{{painting.description}}</h3>
+                    <h3>{{price}}</h3>
+                </div>
+                <span>
+                    {% if user.id == painting.user_id %}
+                        <button><a href="{{painting.id}}/edit/">Edit</a></button>
+                        <button><a href="{{painting.id}}/delete/">Delete</a></button>
+                    {% endif %}
+                </span>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

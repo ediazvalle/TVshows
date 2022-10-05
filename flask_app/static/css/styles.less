@@ -1,0 +1,39 @@
+.flexcolumn{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.flexrow{
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items:center;
+}
+
+body {
+    .flexcolumn();
+
+    header{
+        .flexcolumn();
+    }
+    main{
+        .flexcolumn();
+
+        .row{
+            .flexrow();
+            form{
+                margin: 2em;
+                .flexcolumn();
+                section{
+                    .flexrow();
+                    margin: 2em;
+                    input{
+                        margin: 1em;
+                    }
+                }
+            }
+        }
+    }
+}
